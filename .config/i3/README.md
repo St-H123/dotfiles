@@ -10,3 +10,5 @@ In this section we'll go over some usefull links to video's or documentation to 
 | getting started (1/3) - basic walk through               | https://www.youtube.com/watch?v=j1I63wGcvU4 |
 | getting started (2/3) - basic functional configurations  | https://www.youtube.com/watch?v=8-S0cWnLBKg |
 | getting started (3/3) - basic visual configurations      | https://www.youtube.com/watch?v=ARKIwOlazKI |
+| Configuring i3wm for NixOS                               | https://nixos.wiki/wiki/I3                  |
+| Official documentation from the developers               | https://i3wm.org/                           |
