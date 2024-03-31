@@ -1,0 +1,4 @@
+#~ This file is used to configure i3.
+
+# Set default window borders
+default_border pixel 2
