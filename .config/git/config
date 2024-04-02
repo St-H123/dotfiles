@@ -1,0 +1,8 @@
+[user]
+	name = St-h123
+	email = hazels.05.remount@icloud.com
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[init]
+	defaultBranch = main
