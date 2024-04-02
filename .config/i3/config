@@ -31,10 +31,7 @@ set $caps Mod3
 set $win Mod4
 set $shift Shift
 set $tab Tab
-# Does not work yet
 set $esc Escape 
-
-bindsym $mod+$esc firefox
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -188,9 +185,9 @@ bindsym $alt+$ctrl+q exec i3lock
 # exit i3 (logs you out of your X session)
 bindsym $ctrl+Shift+q exec "i3-nagbar -t warning -m 'Are you sure you want to log out?' -B 'confirm' 'i3-msg exit'"
 
-bindsym $mod+r mode "resize"
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RESIZING MODE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+bindsym $mod+r mode "resize"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
