@@ -1,14 +1,24 @@
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
-# Required programms to be installed for this to work.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#! Required programms to be installed for this to work:
+#  - nitrogen
+#  - i3blocks
+#  - rofi
+#  - compton
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Set the background
-exec nitrogen --set-zoom-fill /home/tygo/dotfiles/wallpapers/default.jpg
+exec --no-startup-id nitrogen --set-zoom-fill /home/tygo/dotfiles/wallpapers/default.jpg
+# exec_always --no-startup-id nitrogen --restore
 
 # Start XDG autostart .desktop files using dex. See also : https://wiki.archlinux.org/index.php/XDG_Autostart for more.
 exec --no-startup-id dex --autostart --environment i3
@@ -21,9 +31,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETTING VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# TODO : fix the
+set $compton_fade_enable               -f
+#set $compton_fade_delay_between_ticks  -D 1
+#set $compton_fade_SOMETHING            -I "0.05"
+#set $compton_fade_SOMETHING_ELSE       -O "0.05"
+exec --no-startup-id compton $compton_fade_enable
 
-set $mod Mod1
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETTING VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 set $alt Mod1
 set $ctrl control
@@ -31,9 +46,18 @@ set $caps Mod3
 set $win Mod4
 set $shift Shift
 set $tab Tab
-set $esc Escape 
+set $esc Escape
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+set $mod Mod1
+
+set $terminal i3-sensible-terminal
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ KEY BINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # reload the configuration file
 bindsym $mod+$shift+c reload
@@ -41,52 +65,20 @@ bindsym $mod+$shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+$shift+r restart
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:monospace 8
-#font pango:DejaVu Sans Mono 8
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $terminal
 
-# TODO : change to all of the same type
-# kill focused window
+# killing all instances of a window
 bindsym $mod+q [class=__focused__] kill
 
-# start dmenu (a program launcher)
-bindsym $mod+space exec --no-startup-id dmenu_run
+# kill focused window
+bindsym $mod+$shift+q kill
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+$shift+j move left
-bindsym $mod+$shift+k move down
-bindsym $mod+$shift+l move up
-bindsym $mod+$shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+$shift+Left move left
-bindsym $mod+$shift+Down move down
-bindsym $mod+$shift+Up move up
-bindsym $mod+$shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -114,6 +106,26 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+d focus child
 
+#| program launchers
+
+# dmenu
+#set $search_case_insensitive    -i
+#set $dmenu_amount_of_Lines      -l 10
+#set $dmenu_foreground           -nf
+#set $dmenu_foreground_selected  -sf
+#set $dmenu_background           -nb
+#set $dmenu_background_selected  -sb
+#bindsym $mod+space exec --no-startup-id dmenu_run $search_case_insensitive $dmenu_amount_of_Lines $dmenu_background $background $dmenu_foreground $inactive $dmenu_foreground_selected $foreground $dmenu_background_selected $background
+
+# rofi
+set $rofi_amount_of_Lines  -l 10
+set $rofi_width            -width 100
+set $rofi_opacity          -opacity 85
+set $rofi_foreground       -fg
+set $rofi_background       -bg
+bindsym $mod+space exec --no-startup-id rofi $rofi_opacity $rofi_width $rofi_amount_of_Lines -show run
+# $rofi_foreground $foreground $rofi_background $background
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CONTROLLING AUDIO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Use pactl to adjust volume in PulseAudio.
@@ -125,13 +137,14 @@ bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MANAGING WORKSPACES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# Define names for default workspaces.
 set $ws1 "1: Terminal"
 set $ws2 "2: File and Code Editors"
 set $ws3 "3: Browser Windows"
 set $ws4 "4: Window Stack"
 set $ws5 "5: File Browsers"
+
+#| moving across workspaces
 
 # switch to workspace using indexes
 bindsym $mod+1 workspace number $ws1
@@ -141,9 +154,11 @@ bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 
 # switch to workspace using arrow keys, and tab (non-functional)
-#bindsym $mod+Left  workspace next 
-# bindsym $mod+Right workspace prev
-# bindsym $mod+$tab workspace back_and_forth
+#bindsym $mod+Left  workspace next
+#bindsym $mod+Right workspace prev
+#bindsym $mod+$tab workspace back_and_forth
+
+#| moving windows across workspaces
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -152,13 +167,39 @@ bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PINNING APPS TO SPACES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#| swapping one window to another
 
-#| force apps to open on certain work spaces
+# move focused window around
+bindsym $mod+$shift+j move left
+bindsym $mod+$shift+k move down
+bindsym $mod+$shift+l move up
+bindsym $mod+$shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+$shift+Left move left
+bindsym $mod+$shift+Down move down
+bindsym $mod+$shift+Up move up
+bindsym $mod+$shift+Right move right
+
+#| changing focus from one window to another
+
+# changing focus on window
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PINNING APPS TO SPACES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #  To get the name of a application:
-#   1. open the window 
+#   1. open the window
 #   2. open a terminal next to it
-#   3. run ` xprop | grep "WM_CLASS(STRING)" ` in the terminal 
+#   3. run ` xprop | grep "WM_CLASS(STRING)" ` in the terminal
 #   4. click on the application you want to get the name of
 #   5. a string of text should be printed. Use the last one.
 
@@ -167,6 +208,7 @@ assign [class="Gnome-terminal"] $ws1
 
 # workspace 2
 assign [class="code"] $ws2
+assign [class="Code"] $ws2
 
 # workspace 3
 assign [class="firefox"] $ws3
@@ -216,6 +258,9 @@ mode "resize" {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ APPEARANCE SETTINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+# Font for window titles. Will also be used by the bar unless a different font is used in the bar {} block below.
+font pango:DejaVu Sans Mono 8
+
 # color defines for zenburn styled i3
 set $background     "#2c2c2e"
 set $foreground     "#ffffff"
@@ -233,13 +278,15 @@ client.urgent             $important   $important   $foreground  $none
 # Hide window name
 default_border pixel 1
 default_floating_border pixel 1
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ BAR SETTINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
     
     i3bar_command i3bar --transparency
-    status_command i3status
+    status_command i3blocks -c $i3blocksconf
+    #i3status
 
     #padding 15px
     #tray_padding 15px
@@ -263,4 +310,7 @@ bar {
     }
 }
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TRAY SETTINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+set $i3blocksconf ~/.config/i3/i3blocks.conf
+
+This paste expires in <1 hour. Public IP access. Share whatever you see with others in seconds with Context. Terms of ServiceReport this
