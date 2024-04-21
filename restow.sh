@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Get the directory of the current script
 current_script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
