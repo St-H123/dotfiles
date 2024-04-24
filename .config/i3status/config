@@ -1,0 +1,89 @@
+general {
+	output_format = "i3bar"
+	colors = true
+	interval = 1
+}
+
+// order += "ipv6"
+
+order += "wireless wlp0s20f3"
+wireless wlp0s20f3 {
+	format_up = "W: Up (%essid)"
+	format_down = "W: Down"
+}
+
+order += "battery 0"
+battery 0 {
+	format = "%status %percentage %remaining remaining"
+	format_down = "No battery"
+	status_chr = "Charging"
+	status_bat = "on Battery"
+	status_unk = "Unknown"
+	status_full = "Full"
+	path = "/sys/class/power_supply/BAT%d/uevent"
+	low_threshold = 20
+}
+
+order += "tztime ams"
+tztime ams {
+	format = "%Y-%m-%d %H:%M:%S"
+	timezone = "Europe/Amsterdam"
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ UNUSED ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+// order += "ethernet eth0"
+// ethernet eth0 {
+// 	format_up = "E: %ip (%speed)"
+// 	format_down = "E: down"
+// }
+
+// order += "run_watch DHCP"
+// run_watch DHCP {
+// 	pidfile = "/var/run/dhclient*.pid"
+// }
+
+// order += "run_watch VPNC"
+// run_watch VPNC {
+// 	# file containing the PID of a vpnc process
+// 	pidfile = "/var/run/vpnc/pid"
+// }
+
+// order += "path_exists VPN"
+// path_exists VPN {
+// 	# path exists when a VPN tunnel launched by nmcli/nm-applet is active
+// 	path = "/proc/sys/net/ipv4/conf/tun0"
+// }
+
+// order += "tztime local"
+// tztime local {
+// 	format = "%Y-%m-%d %H:%M:%S"
+// 	hide_if_equals_localtime = true
+// }
+
+// order += "load"
+// load {
+// 	format = "%5min"
+// }
+
+// order += "cpu_temperature 0"
+// cpu_temperature 0 {
+// 	format = "T: %degrees °C"
+// 	path = "/sys/devices/platform/coretemp.0/temp1_input"
+// }
+
+// order += "memory"
+// memory {
+// 	format = "%used"
+// 	threshold_degraded = "10%"
+// 	format_degraded = "MEMORY: %free"
+// }
+
+// order += "disk /"
+// disk "/" {
+// 	format = "%free"
+// }
+
+// read_file uptime {
+// 	path = "/proc/uptime"
+// }

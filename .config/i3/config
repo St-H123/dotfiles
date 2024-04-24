@@ -32,7 +32,45 @@ set $esc Escape
 
 set $mod Mod1
 
+# If you are using Mac Keybindings
+set $MAC_CMD control
+set $MAC_ALT Mod1
+set $MAC_CTRL Mod4
+# Uncomment if you're using linux keybindings:
+#set $MAC_CMD Mod1
+#set $MAC_ALT Mod4
+#set $MAC_CTRL control
+
 set $terminal i3-sensible-terminal
+
+# Font for window titles. Will also be used by the bar unless a different font is used in the bar {} block below.
+# Todo : make work
+set   $fontSize           25
+set   $fontFamily         DejaVu Sans Mono
+font  $fontFamily         $fontsize
+
+# color defines for zenburn styled i3
+set   $background         "#000000"
+set   $foreground         "#ffffff"
+set   $accent             "#a155b5"
+set   $inactive           "#8f8f8f"
+set   $important          "#e89393"
+set   $none               "#00000000"
+
+# property                border       background   text         indicator
+client.focused            $background  $background  $foreground  $none
+client.unfocused          $background  $background  $inactive    $none
+client.focused_inactive   $background  $background  $accent      $none
+client.urgent             $important   $important   $foreground  $none
+
+# Hide window name bar that is on the top of windows by default.
+default_border            pixel        5
+
+# sets the border size of a floating window.
+default_floating_border   normal       2
+
+# but when the window name bar is visible, show the text alligned to the center.
+title_align               center
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -61,18 +99,29 @@ workspace_layout default
 
 # Workspace 1
 assign [class="(?i)gnome-terminal"] $ws1
+assign [class="(?i)alacritty"] $ws1
+assign [class="(?i)kitty"] $ws1
+assign [class="(?i)xterm"] $ws1
 
 # workspace 2
 assign [class="(?i)code"] $ws2
+assign [class="(?i)kate"] $ws2
 
 # workspace 3
 assign [class="(?i)firefox"] $ws3
+assign [class="(?i)brave-browser"] $ws3
 
 # workspace 4
 assign [class="(?i)discord"] $ws4
+assign [class="(?i)telegram-desktop"] $ws4
+assign [class="(?i)TelegramDesktop"] $ws4
+assign [class="(?i)mail"] $ws4
+assign [class="(?i)thunderbird"] $ws4
 
 # workspace 5
 assign [class="(?i)org.gnome.Nautilus"] $ws5
+assign [class="(?i)VirtualBox Manager"] $ws5
+assign [class="(?i)VirtualBox Machine"] $ws5
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
