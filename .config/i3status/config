@@ -1,15 +1,41 @@
 general {
 	output_format = "i3bar"
 	colors = true
+	color_good = "#FFFFFF"
 	interval = 1
+	markup = "pango"
 }
 
 // order += "ipv6"
 
+order += "load"
+load {
+	format = "CPU: %5min"
+}
+
+order += "memory"
+memory {
+	format = "Memory used: %used"
+	threshold_degraded = "10%"
+	format_degraded = "MEMORY: %free"
+}
+
+order += "ethernet eth0"
+ethernet eth0 {
+	format_up = "Ethernet: %ip (%speed)"
+	format_down = "" // "Ethernet: not connected"
+}
+
+order += "wireless tailscale0"
+wireless tailscale0 {
+	format_up = "Tail Scale: Up"
+	format_down = "Tail Scale: Down"
+}
+
 order += "wireless wlp0s20f3"
 wireless wlp0s20f3 {
-	format_up = "W: Up (%essid)"
-	format_down = "W: Down"
+	format_up = "Wifi: Up (%essid)"
+	format_down = "Wifi: Down"
 }
 
 order += "volume master"
@@ -40,12 +66,6 @@ tztime ams {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ UNUSED ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-// order += "ethernet eth0"
-// ethernet eth0 {
-// 	format_up = "E: %ip (%speed)"
-// 	format_down = "E: down"
-// }
-
 // order += "run_watch DHCP"
 // run_watch DHCP {
 // 	pidfile = "/var/run/dhclient*.pid"
@@ -69,23 +89,12 @@ tztime ams {
 // 	hide_if_equals_localtime = true
 // }
 
-// order += "load"
-// load {
-// 	format = "%5min"
-// }
-
 // order += "cpu_temperature 0"
 // cpu_temperature 0 {
 // 	format = "T: %degrees °C"
 // 	path = "/sys/devices/platform/coretemp.0/temp1_input"
 // }
 
-// order += "memory"
-// memory {
-// 	format = "%used"
-// 	threshold_degraded = "10%"
-// 	format_degraded = "MEMORY: %free"
-// }
 
 // order += "disk /"
 // disk "/" {
