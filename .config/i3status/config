@@ -17,7 +17,7 @@ order += "memory"
 memory {
 	format = "Memory used: %used"
 	threshold_degraded = "10%"
-	format_degraded = "MEMORY: %free"
+	format_degraded = "Memory free: %free"
 }
 
 order += "ethernet eth0"
