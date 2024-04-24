@@ -21,7 +21,7 @@ volume master {
 
 order += "battery 0"
 battery 0 {
-	format = "%status %percentage %remaining remaining"
+	format = "%status %percentage %remaining"
 	format_down = "No battery"
 	status_chr = "Charging"
 	status_bat = "on Battery"
@@ -29,6 +29,7 @@ battery 0 {
 	status_full = "Full"
 	path = "/sys/class/power_supply/BAT%d/uevent"
 	low_threshold = 20
+	last_full_capacity = true
 }
 
 order += "tztime ams"
