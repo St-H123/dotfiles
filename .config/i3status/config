@@ -12,6 +12,13 @@ wireless wlp0s20f3 {
 	format_down = "W: Down"
 }
 
+order += "volume master"
+volume master {
+	format = "V: %volume"
+	format_muted = "V: muted (%volume)"
+	device = "default"
+} 
+
 order += "battery 0"
 battery 0 {
 	format = "%status %percentage %remaining remaining"
