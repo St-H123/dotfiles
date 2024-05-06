@@ -106,6 +106,7 @@ assign [class="(?i)xterm"] $ws1
 # workspace 2
 assign [class="(?i)code"] $ws2
 assign [class="(?i)kate"] $ws2
+assign [class="(?i)gimp"] $ws2
 
 # workspace 3
 assign [class="(?i)firefox"] $ws3
