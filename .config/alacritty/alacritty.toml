@@ -1,0 +1,16 @@
+# Currently it looks for the .yml file, even thought the documentations suggests otherwise.
+live_config_reload = true
+
+[window]
+padding = { x = 5, y = 5 }
+opacity = 0.80
+blur = true 
+# dynamic_title = true
+
+[font]
+normal = { family = "OpenDyslexicM Nerd Font Mono", style = "Regular" }
+
+[colors.primary]
+# foreground = "#FFFFFF"
+foreground = "#FF0000"
+background = "#000000"
