@@ -51,8 +51,8 @@ set   $inactive           "#8f8f8f"
 set   $important          "#e89393"
 set   $none               "#00000000"
 
-set   $fontSize           25
-set   $fontFamily         DejaVu Sans Mono
+set   $fontSize           9
+set   $fontFamily         pango:OpenDyslexicM Nerd Font Mono, DejaVu Sans Mono
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Use Mouse+$mod to drag floating windows to their wanted position
