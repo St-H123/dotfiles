@@ -1,6 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# ~/.bashrc: executed by bash(1) for non-login shells. See /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -9,7 +7,6 @@ case $- in
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
@@ -19,8 +16,7 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
@@ -116,5 +112,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/Oh-My-Posh/similar-to-bash.omp.json)"
-. "$HOME/.cargo/env"
+# if oh my posh is installed
+if command -v oh-my-posh >/dev/null 2>&1; then
+    eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/Oh-My-Posh/similar-to-bash.omp.json)"
+fi
+
+# If Cargo is installed
+if command -v cargo >/dev/null 2>&1; then
+    . "$HOME/.cargo/env"
+fi
