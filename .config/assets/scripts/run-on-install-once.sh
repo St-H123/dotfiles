@@ -1,3 +1,3 @@
 #!/bin/bash
 
-nitrogen --set-zoom-fill /home/tygo/dotfiles/wallpapers/default.jpg
+nitrogen --set-zoom-fill /home/$USER/.config/assets/images/wallpapers/default.jpg

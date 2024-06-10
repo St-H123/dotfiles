@@ -32,7 +32,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Global properties
-command=/home/tygo/.config/i3/blocklets/$BLOCK_NAME
+command=/home/$USER/.config/i3/blocks/blocklets/$BLOCK_NAME
 #/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=35
 markup=none
