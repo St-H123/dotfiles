@@ -52,7 +52,7 @@ set   $important          "#e89393"
 set   $none               "#00000000"
 
 set   $fontSize           9
-set   $fontFamily         pango:OpenDyslexicM Nerd Font Mono, DejaVu Sans Mono
+set   $fontFamily         OpenDyslexicM Nerd Font Mono
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -88,6 +88,8 @@ assign [class="(?i)xterm"] $ws1
 assign [class="(?i)code"] $ws2
 assign [class="(?i)kate"] $ws2
 assign [class="(?i)gimp"] $ws2
+assign [class="(?i)libreoffice"] $ws2
+assign [class="(?i)DesktopEditors"] $ws2
 
 # workspace 3
 assign [class="(?i)firefox"] $ws3
@@ -102,6 +104,7 @@ assign [class="(?i)thunderbird"] $ws4
 
 # workspace 5
 assign [class="(?i)org.gnome.Nautilus"] $ws5
+assign [class="(?i)thunar"] $ws5
 assign [class="(?i)VirtualBox Manager"] $ws5
 assign [class="(?i)VirtualBox Machine"] $ws5
 
