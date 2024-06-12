@@ -101,6 +101,7 @@ assign [class="(?i)telegram-desktop"] $ws4
 assign [class="(?i)TelegramDesktop"] $ws4
 assign [class="(?i)mail"] $ws4
 assign [class="(?i)thunderbird"] $ws4
+assign [class="(?i)signal"] $ws4
 
 # workspace 5
 assign [class="(?i)org.gnome.Nautilus"] $ws5
