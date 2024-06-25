@@ -2,15 +2,20 @@
 live_config_reload = true
 
 [window]
-padding = { x = 5, y = 5 }
+dynamic_title = true
+padding = { x = 0, y = 0 }
 opacity = 0.80
 blur = true 
 # dynamic_title = true
 
 [font]
 normal = { family = "OpenDyslexicM Nerd Font Mono", style = "Regular" }
+size = 8
 
 [colors.primary]
 # foreground = "#FFFFFF"
-foreground = "#FF0000"
+foreground = "#FFFFFF"
 background = "#000000"
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
